@@ -26,7 +26,7 @@ void reduce_test(size_t values_number, size_t thread_number)
     std::vector<int> v(values_number, 2);
 
     auto t1 = std::chrono::high_resolution_clock::now();
-    int x = my_reduce(v.begin(), v.end(), [](int x, int y){return x + y;}, thread_number, 0);
+    int x = my_reduce(v.begin(), v.end(), [](int x, int y){return x + y;}, thread_number, 1);
 
     auto t2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> ms = t2 - t1;
@@ -36,7 +36,7 @@ void reduce_test(size_t values_number, size_t thread_number)
 
 
     t1 = std::chrono::high_resolution_clock::now();
-    int k = my_simpleReduce(v.begin(), v.end(), [](int x, int y) { return x + y; }, 0);
+    int k = my_simpleReduce(v.begin(), v.end(), [](int x, int y) { return x + y; }, 1);
 
     t2 = std::chrono::high_resolution_clock::now();
     ms = t2 - t1;
@@ -72,6 +72,6 @@ void map_test(size_t values_number, size_t thread_number)
 int main() {
     reduce_test(ELEMENT_NUMBER, THREAD_NUMBER);
     map_test(ELEMENT_NUMBER, THREAD_NUMBER);
-
+    //std::cout << "Your number of cores: " << std::thread::hardware_concurrency() << std::endl;
     return 0;
 }

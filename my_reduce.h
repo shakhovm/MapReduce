@@ -23,8 +23,8 @@ template <typename T, class BinaryOp, class InputIt>
 void simple_reduce(InputIt first, InputIt last, BinaryOp operation, T value, std::vector<T>& values,
                    std::mutex& mt) {
 
-    while (first != last) {
-        value = operation(value, *first++);
+    while (first != last - 1) {
+        value = operation(value, *(++first));
 
     }
     mt.lock();
