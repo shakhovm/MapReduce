@@ -44,9 +44,6 @@ void reduce_test(size_t values_number, size_t thread_number)
     std::cout << "Sum is: " << k << std::endl;
 }
 
-int newF(int x) {
-    return x*2;
-}
 void map_test(size_t values_number, size_t thread_number)
 {
     std::vector<int> v1(values_number, 1);
