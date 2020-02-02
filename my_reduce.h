@@ -35,9 +35,11 @@ void simple_reduce(InputIt first, InputIt last, BinaryOp operation, T value, std
 
 template <typename T, class BinaryOp, class InputIt>
 T my_reduce(InputIt first, InputIt last, BinaryOp operation, size_t thread_number, T init) {
+    size_t size = std::distance(first, last);
+    thread_number = std::min(thread_number, size);
     std::thread thread_vector[thread_number];
     std::vector<T> values(thread_number);
-    size_t size = std::distance(first, last);
+
 
     std::mutex mt;
 
